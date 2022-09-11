@@ -95,6 +95,34 @@ class Tree {
     }
     return root;
   };
+
+  levelOrder = (callback) => {
+    this.levelOrderRecursive(this.root, callback);
+  };
+
+  levelOrderIterative = (root, callback, q = [root], i = 0) => {
+    while (i < q.length) {
+      const current = q[i];
+      current.left ? q.push(current.left) : "";
+      current.right ? q.push(current.right) : "";
+      callback(current);
+      i++;
+    }
+  };
+
+  levelOrderRecursive = (root, callback, q = [root]) => {
+    //Base case: queue is empty
+    if (!root) {
+      return;
+    }
+    //Dequeue the first element
+    const current = q.shift();
+    callback(current);
+    //Enqueue child elements
+    current.left ? q.push(current.left) : "";
+    current.right ? q.push(current.right) : "";
+    this.levelOrderRecursive(q[0], callback, q);
+  };
 }
 
 const removeDuplicatesAndSort = (array) => {
@@ -106,4 +134,8 @@ const removeDuplicatesAndSort = (array) => {
   return tmp.sort((a, b) => a - b);
 };
 
+const bst = new Tree([1, 2, 3, 4, 5, 6]);
+bst.levelOrder((node) => {
+  console.log(node.data);
+});
 module.exports = Tree;
