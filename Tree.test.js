@@ -1,7 +1,7 @@
 const Tree = require("./Tree");
 
 it("Null root of BST", () => {
-  expect(new Tree([])).toHaveProperty("root", null);
+  expect(new Tree()).toHaveProperty("root", null);
 });
 
 it("Has root property", () => {
@@ -68,4 +68,16 @@ it("Insert a value into a tree created from unsorted array", () => {
   const bst = new Tree([8, 13, 10, 14, 4, 1, 3, 7, 6]);
   bst.insert(5);
   expect(bst).toHaveProperty("root.left.right.right.left.data", 5);
+});
+
+it("Deleting a value from an empty tree", () => {
+  const bst = new Tree();
+  bst.delete(5);
+  expect(bst).toHaveProperty("root", null);
+});
+
+it("Deleting a leaf node", () => {
+  const bst = new Tree([1, 2, 3, 4]);
+  bst.delete(4);
+  expect(bst).toHaveProperty("root.right.right", null);
 });

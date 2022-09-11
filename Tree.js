@@ -23,23 +23,46 @@ class Tree {
     return current;
   };
 
+  // Calls the recursive insert function on the root node
   insert = (value) => {
     this.root = this.insertRec(this.root, value);
   };
 
   insertRec = (root, value) => {
-    //If leaf node is found, add new node and return it
+    // If leaf node is found, add new node and return it
     if (root == null) {
       root = new Node(value);
       return root;
     }
     //Otherwise recur down the tree
     if (value < root.data) {
-      // If value is less than root, search the left subtree
       root.left = this.insertRec(root.left, value);
-      // If value is greater than root, search right subtree
     } else if (value > root.data) {
       root.right = this.insertRec(root.right, value);
+    }
+    return root;
+  };
+
+  delete = (value) => {
+    this.root = this.deleteRec(this.root, value);
+  };
+
+  deleteRec = (root, value) => {
+    if (root == null) {
+      return root;
+    }
+
+    if (value < root.data) {
+      root.left = this.deleteRec(root.left, value);
+    } else if (value > root.data) {
+      root.right = this.deleteRec(root.right, value);
+    } else {
+      //If the matching key has no children or 1 child
+      if (root.right == null) {
+        return root.left;
+      } else if (root.left == null) {
+        return root.right;
+      }
     }
     return root;
   };
