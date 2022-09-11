@@ -131,6 +131,58 @@ class Tree {
     //Recursive step
     return this.levelOrderRecursive(q[0], callback, q, d);
   };
+
+  inorder = (callback) => {
+    return this.inorderRec(this.root, callback);
+  };
+
+  inorderRec = (root, callback, d = []) => {
+    //Base case: smallest value in subtree
+    if (root === null) {
+      return;
+    } else {
+      this.inorderRec(root.left, callback, d);
+      callback ? callback(root) : d.push(root.data);
+      this.inorderRec(root.right, callback, d);
+    }
+    if (!callback) {
+      return d;
+    }
+  };
+
+  preorder = (callback) => {
+    return this.preorderRec(this.root, callback);
+  };
+
+  preorderRec = (root, callback, d = []) => {
+    if (root === null) {
+      return;
+    } else {
+      callback ? callback(root) : d.push(root.data);
+      this.preorderRec(root.left, callback, d);
+      this.preorderRec(root.right, callback, d);
+    }
+    if (!callback) {
+      return d;
+    }
+  };
+
+  postorder = (callback) => {
+    return this.postorderRec(this.root, callback);
+  };
+
+  postorderRec = (root, callback, d = []) => {
+    if (root === null) {
+      return;
+    } else {
+      this.postorderRec(root.left, callback, d);
+      this.postorderRec(root.right, callback, d);
+      callback ? callback(root) : d.push(root.data);
+    }
+    if (!callback) {
+      return d;
+    }
+  };
 }
 
 const removeDuplicatesAndSort = (array) => {
@@ -141,4 +193,10 @@ const removeDuplicatesAndSort = (array) => {
   // Sort the de-duped array by number ascending
   return tmp.sort((a, b) => a - b);
 };
+
+// const bst = new Tree([1, 6, 3, 7, 3, 6, 12]);
+// bst.postorder((node) => {
+//   console.log(node.data);
+// });
+
 module.exports = Tree;

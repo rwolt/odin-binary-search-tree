@@ -142,3 +142,32 @@ it("Traverse the tree in level order with no callback function", () => {
   const bst = new Tree([1, 2, 3, 4, 5, 6, 7]);
   expect(bst.levelOrder()).toEqual([4, 2, 6, 1, 3, 5, 7]);
 });
+
+it("Inorder traversal of empty tree", () => {
+  const bst = new Tree([]);
+  expect(bst.inorder).toBeNull;
+});
+
+it("Preorder traversal of empty tree", () => {
+  const bst = new Tree([]);
+  expect(bst.preorder).toBeNull;
+});
+it("Postorder traversal of empty tree", () => {
+  const bst = new Tree([]);
+  expect(bst.postorder).toBeNull;
+});
+
+it("Inorder traversal with no callback", () => {
+  const bst = new Tree([6, 3, 7, 2, 5]);
+  expect(bst.inorder()).toEqual([2, 3, 5, 6, 7]);
+});
+
+it("Preorder traversal with no callback", () => {
+  const bst = new Tree([6, 3, 7, 2, 5]);
+  expect(bst.preorder()).toEqual([5, 2, 3, 6, 7]);
+});
+
+it("Postorder traversal with no callback", () => {
+  const bst = new Tree([6, 3, 7, 2, 5]);
+  expect(bst.postorder()).toEqual([3, 2, 7, 6, 5]);
+});
