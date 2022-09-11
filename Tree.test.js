@@ -131,10 +131,14 @@ it("Finding a node with 2 children", () => {
 
 // it("console.log each node value", () => {
 //   const bst = new Tree([1, 2, 3, 4, 5, 6]);
-//   expect(bst.levelOrder((node) => {console.log(node.value)}))
-// })
-
-// it("Traverse the tree in level order with no callback function", () => {
-//   const bst = new Tree([1, 2, 3, 4, 5, 6, 7]);
-//   expect(bst.levelOrder()).toEqual([4, 2, 6, 1, 3, 5, 7]);
+//   expect(
+//     bst.levelOrder((node) => {
+//       console.log(node.data);
+//     })
+//   );
 // });
+
+it("Traverse the tree in level order with no callback function", () => {
+  const bst = new Tree([1, 2, 3, 4, 5, 6, 7]);
+  expect(bst.levelOrder()).toEqual([4, 2, 6, 1, 3, 5, 7]);
+});

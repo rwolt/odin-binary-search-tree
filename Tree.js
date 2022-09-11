@@ -97,7 +97,7 @@ class Tree {
   };
 
   levelOrder = (callback) => {
-    this.levelOrderRecursive(this.root, callback);
+    return this.levelOrderRecursive(this.root, callback);
   };
 
   levelOrderIterative = (root, callback, q = [root], i = 0) => {
@@ -110,18 +110,20 @@ class Tree {
     }
   };
 
-  levelOrderRecursive = (root, callback, q = [root]) => {
+  levelOrderRecursive = (root, callback, q = [root], d = []) => {
     //Base case: queue is empty
-    if (!root) {
+    if (!callback && !root) {
+      return d;
+    } else if (!root) {
       return;
     }
     //Dequeue the first element
     const current = q.shift();
-    callback(current);
+    callback ? callback(current) : d.push(current.data);
     //Enqueue child elements
     current.left ? q.push(current.left) : "";
     current.right ? q.push(current.right) : "";
-    this.levelOrderRecursive(q[0], callback, q);
+    return this.levelOrderRecursive(q[0], callback, q, d);
   };
 }
 
@@ -134,8 +136,4 @@ const removeDuplicatesAndSort = (array) => {
   return tmp.sort((a, b) => a - b);
 };
 
-const bst = new Tree([1, 2, 3, 4, 5, 6]);
-bst.levelOrder((node) => {
-  console.log(node.data);
-});
 module.exports = Tree;
