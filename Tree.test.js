@@ -81,3 +81,21 @@ it("Deleting a leaf node", () => {
   bst.delete(4);
   expect(bst).toHaveProperty("root.right.right", null);
 });
+
+it("Deleting a node with 1 child", () => {
+  const bst = new Tree([1, 2, 3, 4]);
+  bst.delete(3);
+  expect(bst).toHaveProperty("root.right.data", 4);
+});
+
+it("Deleting a node with 2 children", () => {
+  const bst = new Tree([1, 2, 3, 4, 5, 6]);
+  bst.delete(5);
+  expect(bst).toHaveProperty("root.right.data", 6);
+});
+
+it("Deleting a node with 2 children: unsorted", () => {
+  const bst = new Tree([8, 13, 3, 3, 10, 14, 4, 1, 3, 7, 6]);
+  bst.delete(8);
+  expect(bst).toHaveProperty("root.data", 7);
+});

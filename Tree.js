@@ -63,8 +63,21 @@ class Tree {
       } else if (root.left == null) {
         return root.right;
       }
+      //Node with two children:
+      //Take the key from the smallest value in right subtree and replace key of node that is being deleted
+      root.data = this.minValue(root.right);
+      //Recursively remove smallest value in right subtree
+      root.right = this.deleteRec(root.right, root.data);
     }
     return root;
+  };
+
+  minValue = (root) => {
+    //Base case: no value for root.left;
+    if (!root.left) {
+      return root.data;
+    }
+    return this.minValue(root.left);
   };
 }
 
