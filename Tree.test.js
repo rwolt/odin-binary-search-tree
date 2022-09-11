@@ -99,3 +99,32 @@ it("Deleting a node with 2 children: unsorted", () => {
   bst.delete(8);
   expect(bst).toHaveProperty("root.data", 7);
 });
+
+it("Find a value that does not exist", () => {
+  const bst = new Tree();
+  const found = bst.find(5);
+  expect(found).toBeNull;
+});
+
+it("Find a leaf node", () => {
+  const bst = new Tree([1, 2, 3, 4]);
+  expect(bst.find(1)).toEqual({ data: 1, left: null, right: null });
+});
+
+it("Finding a node with 1 child", () => {
+  const bst = new Tree([1, 5, 7, 3, 1, 5, 7, 3, 5]);
+  expect(bst.find(5)).toEqual({
+    data: 5,
+    left: null,
+    right: { data: 7, left: null, right: null },
+  });
+});
+
+it("Finding a node with 2 children", () => {
+  const bst = new Tree([1, 2, 3, 4, 5, 6]);
+  expect(bst.find(5)).toEqual({
+    data: 5,
+    left: { data: 4, left: null, right: null },
+    right: { data: 6, left: null, right: null },
+  });
+});

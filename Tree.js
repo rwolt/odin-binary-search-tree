@@ -79,6 +79,22 @@ class Tree {
     }
     return this.minValue(root.left);
   };
+
+  find = (value) => {
+    return this.findRec(this.root, value);
+  };
+
+  findRec = (root, value) => {
+    if (root === null) {
+      return root;
+    }
+    if (value > root.data) {
+      return this.findRec(root.right, value);
+    } else if (value < root.data) {
+      return this.findRec(root.left, value);
+    }
+    return root;
+  };
 }
 
 const removeDuplicatesAndSort = (array) => {
