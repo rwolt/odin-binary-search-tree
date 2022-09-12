@@ -206,3 +206,17 @@ it("Height of value not in the tree", () => {
   const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
   expect(bst.height(19)).toBeFalse;
 });
+
+it("Check if balanced tree is balanced", () => {
+  const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
+  expect(bst.isBalanced()).toBeTrue;
+});
+
+it("Cehck if unbalanced tree is balanced", () => {
+  const bst = new Tree([1, 2, 3, 4, 5]);
+  bst.insert(87);
+  bst.insert(74);
+  bst.insert(24);
+  bst.insert(99);
+  expect(bst.isBalanced()).toBeFalse;
+});

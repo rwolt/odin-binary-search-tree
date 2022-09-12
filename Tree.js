@@ -217,6 +217,15 @@ class Tree {
 
     return Math.max(left, right);
   };
+
+  isBalanced = () => {
+    if (
+      Math.abs(this.height(this.root.left) - this.height(this.root.right)) > 1
+    ) {
+      return false;
+    }
+    return true;
+  };
 }
 const removeDuplicatesAndSort = (array) => {
   // Keep only the first occurence of an item
@@ -227,6 +236,4 @@ const removeDuplicatesAndSort = (array) => {
   return tmp.sort((a, b) => a - b);
 };
 
-const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
-let edges = bst.height(10);
 module.exports = Tree;
