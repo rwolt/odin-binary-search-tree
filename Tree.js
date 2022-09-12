@@ -96,7 +96,7 @@ class Tree {
     return root;
   };
 
-  levelOrder = (callback) => {
+  levelorder = (callback) => {
     return this.levelOrderIterative(this.root, callback);
   };
 
@@ -227,7 +227,7 @@ class Tree {
     return true;
   };
 
-  reBalance = () => {
+  rebalance = () => {
     let tmp = this.inorder();
     this.root = this.buildTree(tmp, 0, tmp.length - 1);
   };

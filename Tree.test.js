@@ -140,7 +140,7 @@ it("Finding a node with 2 children", () => {
 
 it("Traverse the tree in level order with no callback function", () => {
   const bst = new Tree([1, 2, 3, 4, 5, 6, 7]);
-  expect(bst.levelOrder()).toEqual([4, 2, 6, 1, 3, 5, 7]);
+  expect(bst.levelorder()).toEqual([4, 2, 6, 1, 3, 5, 7]);
 });
 
 it("Inorder traversal of empty tree", () => {
@@ -227,6 +227,6 @@ it("Rebalance an unbalanced tree", () => {
   bst.insert(74);
   bst.insert(24);
   bst.insert(99);
-  bst.reBalance();
+  bst.rebalance();
   expect(bst.isBalanced()).toBeTrue;
 });
