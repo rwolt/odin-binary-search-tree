@@ -226,6 +226,11 @@ class Tree {
     }
     return true;
   };
+
+  reBalance = () => {
+    let tmp = this.inorder();
+    this.root = this.buildTree(tmp, 0, tmp.length - 1);
+  };
 }
 const removeDuplicatesAndSort = (array) => {
   // Keep only the first occurence of an item

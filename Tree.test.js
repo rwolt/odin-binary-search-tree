@@ -212,11 +212,21 @@ it("Check if balanced tree is balanced", () => {
   expect(bst.isBalanced()).toBeTrue;
 });
 
-it("Cehck if unbalanced tree is balanced", () => {
+it("Check if unbalanced tree is balanced", () => {
   const bst = new Tree([1, 2, 3, 4, 5]);
   bst.insert(87);
   bst.insert(74);
   bst.insert(24);
   bst.insert(99);
   expect(bst.isBalanced()).toBeFalse;
+});
+
+it("Rebalance an unbalanced tree", () => {
+  const bst = new Tree([1, 2, 3, 4, 5]);
+  bst.insert(87);
+  bst.insert(74);
+  bst.insert(24);
+  bst.insert(99);
+  bst.reBalance();
+  expect(bst.isBalanced()).toBeTrue;
 });
