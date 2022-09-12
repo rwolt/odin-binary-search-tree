@@ -183,8 +183,41 @@ class Tree {
       return d;
     }
   };
-}
 
+  depth = (value) => {
+    return this.depthRec(this.root, value);
+  };
+
+  depthRec = (root, value, edges = 0) => {
+    if (root === null) {
+      return root;
+    }
+    if (value > root.data) {
+      edges += 1;
+      return this.depthRec(root.right, value, edges);
+    } else if (value < root.data) {
+      edges += 1;
+      return this.depthRec(root.left, value, edges);
+    }
+    return edges;
+  };
+
+  height = (value) => {
+    const tmp = this.find(value);
+    return this.heightRec(tmp);
+  };
+
+  heightRec = (root) => {
+    if (root == null) {
+      // No edge to this node
+      return -1;
+    }
+    const left = 1 + this.heightRec(root.left);
+    const right = 1 + this.heightRec(root.right);
+
+    return Math.max(left, right);
+  };
+}
 const removeDuplicatesAndSort = (array) => {
   // Keep only the first occurence of an item
   let tmp = array.filter((item, index) => {
@@ -194,9 +227,6 @@ const removeDuplicatesAndSort = (array) => {
   return tmp.sort((a, b) => a - b);
 };
 
-// const bst = new Tree([1, 6, 3, 7, 3, 6, 12]);
-// bst.postorder((node) => {
-//   console.log(node.data);
-// });
-
+const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
+let edges = bst.height(10);
 module.exports = Tree;

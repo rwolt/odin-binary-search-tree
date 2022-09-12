@@ -171,3 +171,38 @@ it("Postorder traversal with no callback", () => {
   const bst = new Tree([6, 3, 7, 2, 5]);
   expect(bst.postorder()).toEqual([3, 2, 7, 6, 5]);
 });
+
+it("Depth of key not in tree", () => {
+  const bst = new Tree([8, 5, 11]);
+  expect(bst.depth(15)).toBeNull;
+});
+
+it("Depth of zero", () => {
+  const bst = new Tree([8, 5, 11]);
+  expect(bst.depth(8)).toBe(0);
+});
+
+it("Depth of 2", () => {
+  const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
+  expect(bst.depth(14)).toBe(3);
+});
+
+it("Height of zero (leaf node)", () => {
+  const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
+  expect(bst.height(14)).toBe(0);
+});
+
+it("Height of root", () => {
+  const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
+  expect(bst.height(7)).toBe(3);
+});
+
+it("Height of node in middle of tree", () => {
+  const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
+  expect(bst.height(10)).toBe(2);
+});
+
+it("Height of value not in the tree", () => {
+  const bst = new Tree([8, 3, 10, 1, 14, 6, 13, 4, 7]);
+  expect(bst.height(19)).toBeFalse;
+});
